@@ -261,7 +261,7 @@ window.snake.scheme = function(settings = {}) {
         );
         eval(
           code.match(
-            /[a-zA-Z0-9_$]{1,6}\.prototype\.[a-zA-Z0-9_$]{1,6}=function\(a,b\){this\.[a-zA-Z0-9_$]{1,6}&&this\.[a-zA-Z0-9_$]{1,6}&&\(a=0\);[^}]*?#578A34[^]*?\)\):0\)}/  
+            /[a-zA-Z0-9_$]{1,6}\.prototype\.[a-zA-Z0-9_$]{1,6}=function\(a\){if\(this\.[a-zA-Z0-9_$]{1,6}&&!this\.[a-zA-Z0-9_$]{1,6}\){if\(0<[^]*?#578A34[^]*?}}}/  
           )[0].replace(
             '{',
             `{
