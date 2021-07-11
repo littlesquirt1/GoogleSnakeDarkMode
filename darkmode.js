@@ -1,10 +1,10 @@
 window.snake.scheme = function(settings = {}) {
   if(settings.scoreBar === undefined)
     settings.scoreBar = '#4A752C';
-  if(settings.walls === undefined)
-    settings.walls = '#578A34';
   if(settings.borders === undefined)
     settings.borders = '#578A34';
+  if(settings.walls === undefined)
+    settings.walls = settings.borders;
   if(settings.shadows === undefined)
     settings.shadows = '#94BD46';
   if(settings.lightSquares === undefined)
@@ -176,6 +176,7 @@ window.snake.scheme = function(settings = {}) {
 
     const url_w = wallMode.toDataURL();
     document.getElementsByClassName('e1XC2b')[1].children[0].children[1].src = url_w;
+    document.querySelector('body > div > div.zsInrf > div > div:nth-child(3) > div.S4H6uf > div > div:nth-child(2) > div').children[0].src = url_w;
 
 
     const scripts = document.body.getElementsByTagName('script');
@@ -183,7 +184,7 @@ window.snake.scheme = function(settings = {}) {
       const req = new XMLHttpRequest();
       req.open('GET', script.src);
       req.onload = function() {
-        if(this.responseText.indexOf('"#A2') !== -1)
+        if(this.responseText.indexOf('#A2') !== -1)
           processCode(this.responseText);
       };
       req.send();
@@ -285,7 +286,7 @@ window.snake.scheme = function(settings = {}) {
     
         eval(
           code.match(
-            /[a-zA-Z0-9_$]{1,6}=function\(a,b,c,d\){a\.[a-zA-Z0-9_$]{1,6}\.fillStyle=[^}]*?AAD751[^}]*?A2D149[^]*?\)}/
+            /[a-zA-Z0-9_$]{1,6}=function\(a,b,c,d\){a\.[a-zA-Z0-9_$]{1,6}\.fillStyle=.*AAD751.*A2D149[^}]*?d*a\.[a-zA-Z0-9_$]{1,6}\)}}/
           )[0].replace(
             /#A2D149/g,
             settings.lightSquares
@@ -294,18 +295,7 @@ window.snake.scheme = function(settings = {}) {
             settings.darkSquares
           )
         );
-    
-        eval(
-          code.match(
-            /[a-zA-Z0-9_$]{1,6}=function\(a,b,c,d\){a\.[a-zA-Z0-9_$]{1,6}\.fillStyle=[^]?0===[^}]*?\)}/
-          )[0].replace(
-            /#A2D149/g,
-            settings.lightSquares
-          ).replace(
-            /#AAD751/g,
-            settings.darkSquares
-          )
-        );
+
 
         eval(
           code.match(
