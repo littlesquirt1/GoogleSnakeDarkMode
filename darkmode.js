@@ -284,36 +284,11 @@ window.snake.scheme = function(settings = {}) {
         );
 
     
-        eval(
-          code.match(
-            /[a-zA-Z0-9_$]{1,6}=function\(a,b,c,d\){a\.[a-zA-Z0-9_$]{1,6}\.fillStyle=.*AAD751.*A2D149[^}]*?d*a\.[a-zA-Z0-9_$]{1,6}\)}}/
-          )[0].replace(
-            /#A2D149/g,
-            settings.lightSquares
-          ).replace(
-            /#AAD751/g,
-            settings.darkSquares
-          )
-        );
-
-
-        eval(
-          code.match(
-            /[a-zA-Z0-9_$]{1,6}\.prototype\.[a-zA-Z0-9_$]{1,6}=function\(\){[^}]*?256[^]*?return b\.promise}/
-          )[0].replace(
-            /#A2D149/g,
-            settings.lightSquares
-          ).replace(
-            /#AAD751/g,
-            settings.darkSquares
-          )
-        );
-    
         
     
         eval(
           code.match(
-            /[a-zA-Z0-9_$]{1,6}\.prototype\.[a-zA-Z0-9_$]{1,6}=function\(a,b,c,d,e\){this\.[a-zA-Z0-9_$]{1,6}&&\(this\.[a-zA-Z0-9_$]{1,6}\.translate[^}]*?y\)\)}/
+            /[a-zA-Z0-9_$]{1,8}\.prototype\.[a-zA-Z0-9_$]{1,8}=function\(a,b,c,d,e\){this\.[a-zA-Z0-9_$]{1,8}&&\(this\.[a-zA-Z0-9_$]{1,8}\.translate[^}]*?y\)\)}/
           )[0].replace(
             '{',
             `{
