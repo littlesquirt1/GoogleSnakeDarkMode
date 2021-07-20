@@ -1,0 +1,59 @@
+//Desert
+window.snake.scheme({
+  scoreBar:     '#B2A350',
+  background:   '#8C8340',
+  walls:        '#B2A350',
+  shadows:      '#A9993C',
+  lightSquares: '#E8D56A',
+  darkSquares:  '#C9B95C',
+});
+
+//Pool
+window.snake.scheme({
+  scoreBar:     '#192544',
+  background:   '#214172',
+  walls:        '#152549',
+  shadows:      '#11529F',
+  lightSquares: '#359ECE',
+  darkSquares:  '#3172AF',
+});
+
+//Colour palette
+window.snake.scheme({
+  scoreBar:     '#5C3E84',
+  background:   '#4B4FA0',
+  walls:        '#686EE2',
+  shadows:      '#D75C4E',
+  lightSquares: '#FFA87B',
+  darkSquares:  '#F35C6E',
+});
+
+//Nice white
+window.snake.scheme({
+  scoreBar:     '#555273',
+  background:   '#C0DDE8',
+  walls:        '#65799B',
+  shadows:      '#A6CCDE',
+  lightSquares: '#E2EFF1',
+  darkSquares:  '#B6D5E1',
+});
+
+//Pink
+window.snake.scheme({
+  scoreBar:     '#DB3C8A',
+  background:   '#821655',
+  walls:        '#A03271',
+  shadows:      '#B64C9E',
+  lightSquares: '#EB92FB',
+  darkSquares:  '#C855BC',
+});
+
+//End
+window.snake.scheme({
+  scoreBar:     '#BBBBBB',
+  background:   '#000000',
+  walls:        '#888888',
+  shadows:      '#000000',//'#DDDDDD' for light shadow
+  lightSquares: '#FFFFFF',
+  darkSquares:  '#FFFFFF',
+});
