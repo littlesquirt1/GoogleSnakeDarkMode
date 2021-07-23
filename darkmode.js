@@ -176,7 +176,7 @@ window.snake.scheme = function(settings = {}) {
 
     const url_w = wallMode.toDataURL();
     document.getElementsByClassName('e1XC2b')[1].children[0].children[1].src = url_w;
-    document.querySelector('body > div > div.zsInrf > div > div:nth-child(3) > div.S4H6uf > div > div:nth-child(2) > div').children[0].src = url_w;
+    document.getElementsByClassName('vuOknd')[1].children[0].src = url_w;
 
 
     const scripts = document.body.getElementsByTagName('script');
@@ -381,9 +381,9 @@ function HSVtoRGB(h, s, v) {
 
 
 function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
-  if(typeof stroke === "undefined")
+  if(typeof stroke === 'undefined')
     stroke = false;
-  if(typeof radius === "undefined")
+  if(typeof radius === 'undefined')
     radius = 5;
   ctx.beginPath();
   ctx.moveTo(x + radius, y);
