@@ -34,19 +34,6 @@ window.snake.scheme({
 ```
 If you want to disable, just refresh.
 
-## Enable FishesHUD
-```
-window.snake.fishesHUD({
-  background:             '#rrggbb', // hex code for background of input display (recommended to use the same color as scheme background)
-  showInputDisplay:       boolean,   // true/false, whether to show the input display
-  arrows:                 boolean,   // true/false, true to show arrows in the input display, false for wasd
-  darkModeGang:           boolean,   // true/false, whether to show the dark mode emblem
-  burgerGang:             boolean,   // true/false, whether to show the burger mode emblem
-  showLilSebastianImages: boolean,   // true/false, whether to show the images of lil sebastian (idk why this exists lol)
-}); // if not given any arguments, it will be my favorite layout (for dark mode)
-```
-If you want to disable, just refresh.
-
 ### Collaborators
 * Llama
 * Fishes
