@@ -5,23 +5,15 @@ This project has JavaScript code that when pasted directly into the developer co
 Supported on Chrome and Opera. Other browser may or may not work.
 
 ## Making it work
-Simply Click the Bookmark.
-```
-```
-Alternatively, you can do the following:
-```
-```
+Simply Click the Bookmark.<br/>
+Alternatively, you can do the following:<br/>
 As mentioned earlier, copy and paste the code in `darkmode.js` into the console, here's a screenshot:     
-![image](https://user-images.githubusercontent.com/6286286/111076598-95cc9a00-84f5-11eb-9a38-e71bddeb97e4.png)
-```
-```
-And press Enter.
-```
-```
+![image](https://user-images.githubusercontent.com/6286286/111076598-95cc9a00-84f5-11eb-9a38-e71bddeb97e4.png)<br/>
+And press Enter.<br/>
 As of now, this must be done everytime you refresh/open the game.
 
 ## Create a Bookmark for a Custom Scheme
-Go to [Google Snake Scheme Bookmark Maker](https://fizhes.github.io/scheme_bookmark_maker/), and fill in the required fields!
+Go to [Google Snake Scheme Bookmark Maker](https://fizhes.github.io/scheme_bookmark_maker/), <br/>and fill in the required fields!
 
 ## Enable Dark Mode
 ```
