@@ -13,7 +13,7 @@ And press Enter.<br/>
 As of now, this must be done everytime you refresh/open the game.
 
 ## Create a Bookmark for a Custom Scheme
-Go to [Google Snake Scheme Bookmark Maker](https://fizhes.github.io/scheme_bookmark_maker/), <br/>and fill in the required fields!
+Go to [Google Snake Scheme Bookmark Maker](https://fizhes.github.io/scheme_bookmark_maker/), <br/>fill in the required fields,<br/>and click the button:tm:.
 
 ## Enable Dark Mode
 ```
