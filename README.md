@@ -1,5 +1,6 @@
 # Custom Color Schemes for Google Snake
 
+
 This project has JavaScript code that when pasted directly into the developer console in the browser, adds functions to Google Snake Game.           
 Supported on Chrome and Opera. Other browser may or may not work.
 
@@ -10,6 +11,9 @@ As mentioned earlier, copy and paste the code in `darkmode.js` into the console,
 ![image](https://user-images.githubusercontent.com/6286286/111076598-95cc9a00-84f5-11eb-9a38-e71bddeb97e4.png)
 And press Enter.
 As of now, this must be done everytime you refresh/open the game.
+
+## Create a Bookmark for a Custom Scheme
+Go to [Google Snake Scheme Bookmark Maker](https://fizhes.github.io/scheme_bookmark_maker/), and fill in the required fields!
 
 ## Enable Dark Mode
 ```
