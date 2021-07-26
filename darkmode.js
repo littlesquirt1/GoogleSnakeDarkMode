@@ -123,18 +123,18 @@ window.snake.scheme = function(settings = {}) {
   document.getElementsByClassName('iLZj5e')[4].children[2].src = url_l;
 
 
-  const wallImg = new Image();
-  wallImg.src = 'https://i.postimg.cc/XN8CGSPy/trophy-01.png';
-  wallImg.crossOrigin = 'Anonymous';
+  const wall_img = new Image();
+  wall_img.src = 'https://i.postimg.cc/XN8CGSPy/trophy-01.png';
+  wall_img.crossOrigin = 'Anonymous';
   setTimeout(function() {
-    const wallMode = document.createElement('canvas');
-    wallMode.width = 128;
-    wallMode.height = 128;
-    const wctx = wallMode.getContext('2d');
-    wctx.drawImage(wallImg, 0, 0);
+    const wall_mode = document.createElement('canvas');
+    wall_mode.width = 128;
+    wall_mode.height = 128;
+    const wctx = wall_mode.getContext('2d');
+    wctx.drawImage(wall_img, 0, 0);
 
-    let wallData = wctx.getImageData(0, 0, 128, 128);
-    let pix = wallData.data;
+    let wall_data = wctx.getImageData(0, 0, 128, 128);
+    let pix = wall_data.data;
 
     let w_f = settings.walls;
     w_f = w_f.replace('#', '');
@@ -172,171 +172,245 @@ window.snake.scheme = function(settings = {}) {
 
       }
     
-    wctx.putImageData(wallData, 0, 0);
+    wctx.putImageData(wall_data, 0, 0);
 
-    const url_w = wallMode.toDataURL();
+    const url_w = wall_mode.toDataURL();
     document.getElementsByClassName('e1XC2b')[1].children[0].children[1].src = url_w;
     document.getElementsByClassName('vuOknd')[1].children[0].src = url_w;
 
 
-    const scripts = document.body.getElementsByTagName('script');
-    for(let script of scripts) {
-      const req = new XMLHttpRequest();
-      req.open('GET', script.src);
-      req.onload = function() {
-        if(this.responseText.indexOf('#A2') !== -1)
-          processCode(this.responseText);
-      };
-      req.send();
-    }
+    let key_img = new Image();
+    key_img.src = 'https://i.postimg.cc/nzkFstB8/key-types-dark.png';
+    key_img.crossOrigin = 'Anonymous';
+    setTimeout(_ => {
+      const key_types = document.createElement('canvas');
+      key_types.width = 640;
+      key_types.height = 128;
+      const kctx = key_types.getContext('2d');
+      kctx.drawImage(key_img, 0, 0);
 
-    function processCode(code) {
-      eval(`var boxImage = new Image; boxImage.src = 'https://i.postimg.cc/GppCGFKQ/box.png';`);
-      setTimeout(function() {
-        
+      const kdata = kctx.getImageData(0, 0, 640, 128);
+      pix = kdata.data;
 
-        const box = code.match(
-          /this\.[a-zA-Z0-9_$]{1,6}=new [a-zA-Z0-9_$]{1,6}\([^)}]*?box\.png[^})]*?\);/
-        )[0].replace('this.', '').replace(/=new[^]*/g, '');
+      const wrgb = hex_to_rgb(settings.walls);
+      const whsv = RGBtoHSV(wrgb.r, wrgb.g, wrgb.b);
+      let new_hsv;
+      if(settings.keyBlockMarks) {
+        const kbm_rgb = hex_to_rgb(settings.keyBlockMarks);
+        new_hsv = RGBtoHSV(kbm_rgb.r, kbm_rgb.g, kbm_rgb.b);
+      } else if(whsv.s > .1)
+        new_hsv = {
+          h: Math.max(whsv.h - 5, 0),
+          s: Math.min(whsv.s + .24, 1),
+          v: Math.max(whsv.v - .16, 0),
+        };
+      else 
+        new_hsv = {
+          h: Math.max(whsv.h - 5, 0),
+          s: Math.max(whsv.s - .24, 0),
+          v: Math.min(whsv.v + .16, 1),
+        };
+      const new_rgb = HSVtoRGB(new_hsv.h, new_hsv.s, new_hsv.v);
 
-        const containee = code.match(
-          /[a-zA-Z0-9_$]{1,6}=function\(a,b,c\){this\.[a-zA-Z0-9_$]{1,6}=new Image;[^}]*?this\)}/
-        )[0].match(/this\.[a-zA-Z0-9_$]{1,6}=document/)[0].replace('this.', '').replace('=document', '');
+      for(let y = 0; y < key_img.height; y++) {
+        for(let x = 0; x < key_img.width; x++) {
+          let index = 4 * (x + y * key_img.width);
+          let { h, s, v, } = RGBtoHSV(
+            pix[index],
+            pix[1 + index],
+            pix[2 + index]
+          );
 
-        eval(
-          `
-          var boxCanvas = document.createElement('canvas');
-          boxCanvas.width = 896;boxCanvas.height = 128;
-          var bctx = boxCanvas.getContext('2d');
+          if(Math.abs(h - 90) < 2) {
+            pix[index] = new_rgb.r;
+            pix[1 + index] = new_rgb.g;
+            pix[2 + index] = new_rgb.b;
+          }
+        }
+      }
+      kctx.putImageData(kdata, 0, 0);
 
-          bctx.drawImage(boxImage, 0, 0);
-    
-          bctx.fillStyle = '${settings.lightGoal}';
-          bctx.fillRect(128, 0, 128, 128);
-
-          bctx.fillStyle = '${settings.darkGoal}';
-          bctx.fillRect(149, 21, 85, 85);
-
-          bctx.fillStyle = '${settings.lightGoal}';
-          bctx.fillRect(171, 43, 41, 41);
-
-          bctx.fillStyle = '${settings.darkGoal}';
-          bctx.fillRect(256, 0, 128, 128);
-
-          bctx.fillStyle = '${settings.lightGoal}';
-          bctx.fillRect(277, 21, 85, 85);
-
-          bctx.fillStyle = '${settings.darkGoal}';
-          bctx.fillRect(299, 43, 41, 41);
-
-          bctx.fillStyle = '${settings.lightGoal}';
-          bctx.fillRect(384, 0, 128, 128);
-
-          bctx.fillStyle = '${settings.darkGoal}';
-          bctx.fillRect(405, 21, 85, 85);
-
-          bctx.fillStyle = '${settings.lightGoal}';
-          bctx.fillRect(427, 43, 41, 41);
-
-          bctx.fillStyle = '${settings.darkGoal}';
-          bctx.fillRect(512, 0, 128, 128);
-
-          bctx.fillStyle = '${settings.lightGoal}';
-          bctx.fillRect(533, 21, 85, 85);
-
-          bctx.fillStyle = '${settings.darkGoal}';
-          bctx.fillRect(555, 43, 41, 41);
-
-
-
-          `
-        );
-
-        eval(
-          code.match(
-            /[a-zA-Z0-9_$]{1,6}=function\(a\){a\.[a-zA-Z0-9_$]{1,6}\.globalCompositeOperation[^}]*"source-over"}/
-          )[0].replace(
-            /#94BD46/g,
-            settings.shadows
-          )
-        );
-        eval(
-          code.match(
-            /[a-zA-Z0-9_$]{1,6}\.prototype\.[a-zA-Z0-9_$]{1,6}=function\(a\){if\(this\.[a-zA-Z0-9_$]{1,6}&&!this\.[a-zA-Z0-9_$]{1,6}\){if\(0<[^]*?#578A34[^]*?}}}/  
-          )[0].replace(
-            '{',
-            `{
-              this\.${box}\.${containee} = { canvas: boxCanvas, };
-            `
-          ).replace(
-            '#578A34',
-            settings.borders
-          ).replaceAll(
-            '#578A34',
-            settings.walls
-          ).replaceAll(
-            '#A2D149',
-            settings.lightSquares
-          ).replaceAll(
-            '#AAD751',
-            settings.darkSquares
-          )
-        );
-
-    
-        
-    
-        eval(
-          code.match(
-            /[a-zA-Z0-9_$]{1,8}\.prototype\.[a-zA-Z0-9_$]{1,8}=function\(a,b,c,d,e\){this\.[a-zA-Z0-9_$]{1,8}&&\(this\.[a-zA-Z0-9_$]{1,8}\.translate[^}]*?y\)\)}/
-          )[0].replace(
-            '{',
-            `{
-              let canv = document.createElement('canvas');
-              canv.width = 403;canv.height = 110;
-    
-              let ctx = canv.getContext('2d');
-    
-              for(let i = 0; i < 12; i++) {
-                if(i % 2 === 0)
-                  ctx.fillStyle = '${settings.darkSquares}';
-                else
-                  ctx.fillStyle = '${settings.lightSquares}';
-                
-                ctx.fillRect(i * 34, 0, (i + 1) * 34, 34);
-              }
-    
-              for(let i = 0; i < 12; i++) {
-                if(i % 2 === 0)
-                  ctx.fillStyle = '${settings.lightSquares}';
-                else
-                  ctx.fillStyle = '${settings.darkSquares}';
-                
-                ctx.fillRect(i * 34, 34, (i + 1) * 34, 69);
-              }
-    
-              for(let i = 0; i < 12; i++) {
-                if(i % 2 === 0)
-                  ctx.fillStyle = '${settings.darkSquares}';
-                else
-                  ctx.fillStyle = '${settings.lightSquares}';
-                
-                ctx.fillRect(i * 34, 70, (i + 1) * 34, canv.height);
-              }
-              
-            `
-          ).replace(
-            'drawImage(',
-            `
-            drawImage(Object.values(this).reduce(
-              (s, el) => s || (typeof el === 'string' ? el.includes('end_empty') : false), false
-            ) ? canv : 
-            `
-          )
-        );
-      }, 1500);
+      const url_k = key_types.toDataURL();
       
-    }
+
+
+
+      const scripts = document.body.getElementsByTagName('script');
+      for(let script of scripts) {
+        const req = new XMLHttpRequest();
+        req.open('GET', script.src);
+        req.onload = function() {
+          if(this.responseText.indexOf('#A2') !== -1)
+            processCode(this.responseText);
+        };
+        req.send();
+      }
+
+      function processCode(code) {
+        eval(`var boxImage = new Image; boxImage.src = 'https://i.postimg.cc/GppCGFKQ/box.png';`);
+        setTimeout(function() {
+          
+
+          const box = code.match(
+            /this\.[a-zA-Z0-9_$]{1,8}=new [a-zA-Z0-9_$]{1,8}\([^)}]*?box\.png[^})]*?\);/
+          )[0].replace('this.', '').replace(/=new[^]*/g, '');
+
+          const containee = code.match(
+            /[a-zA-Z0-9_$]{1,8}=function\(a,b,c\){this\.[a-zA-Z0-9_$]{1,8}=new Image;[^}]*?this\)}/
+          )[0].match(/this\.[a-zA-Z0-9_$]{1,8}=document/)[0].replace('this.', '').replace('=document', '');
+
+          eval(
+            `
+            var boxCanvas = document.createElement('canvas');
+            boxCanvas.width = 896;boxCanvas.height = 128;
+            var bctx = boxCanvas.getContext('2d');
+
+            bctx.drawImage(boxImage, 0, 0);
+      
+            bctx.fillStyle = '${settings.lightGoal}';
+            bctx.fillRect(128, 0, 128, 128);
+
+            bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillRect(149, 21, 85, 85);
+
+            bctx.fillStyle = '${settings.lightGoal}';
+            bctx.fillRect(171, 43, 41, 41);
+
+            bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillRect(256, 0, 128, 128);
+
+            bctx.fillStyle = '${settings.lightGoal}';
+            bctx.fillRect(277, 21, 85, 85);
+
+            bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillRect(299, 43, 41, 41);
+
+            bctx.fillStyle = '${settings.lightGoal}';
+            bctx.fillRect(384, 0, 128, 128);
+
+            bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillRect(405, 21, 85, 85);
+
+            bctx.fillStyle = '${settings.lightGoal}';
+            bctx.fillRect(427, 43, 41, 41);
+
+            bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillRect(512, 0, 128, 128);
+
+            bctx.fillStyle = '${settings.lightGoal}';
+            bctx.fillRect(533, 21, 85, 85);
+
+            bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillRect(555, 43, 41, 41);
+
+
+
+            `
+          );
+
+          eval(
+            code.match(
+              /[a-zA-Z0-9_$]{1,8}=function\(a\){a\.[a-zA-Z0-9_$]{1,8}\.globalCompositeOperation[^}]*"source-over"}/
+            )[0].replace(
+              /#94BD46/g,
+              settings.shadows
+            )
+          );
+
+          const tkb = code.match(
+            /this\.[a-zA-Z0-9_$]{1,8}=new [a-zA-Z0-9_$]{1,8}\("snake_arcade\/key_types_dark\.png",[^)]*?\)/
+          )[0].match(/this\.[a-zA-Z0-9_$]{1,8}/)[0];
+
+          const oa = code.match(
+            /[a-zA-Z0-9_$]{1,8}=function\(a\){return a\.[a-zA-Z0-9_$]{1,8}\.canvas}/
+          )[0].match(/a\.[a-zA-Z0-9_$]{1,8}\.canvas/)[0].replace('a.', '').replace('.canvas', '');
+
+
+          eval(
+            `_boorg = new Image;_boorg.src='${url_k}';_boorg.crossOrigin='Anonymous';
+            boorg = { ${oa}: { canvas: _boorg, }, };`
+          );
+          eval(
+            code.match(
+              /[a-zA-Z0-9_$]{1,8}\.prototype\.[a-zA-Z0-9_$]{1,8}=function\(a\){if\(this\.[a-zA-Z0-9_$]{1,8}&&!this\.[a-zA-Z0-9_$]{1,8}\){if\(0<[^]*?#578A34[^]*?}}}/  
+            )[0].replace(
+              '{',
+              `{
+                this\.${box}\.${containee} = { canvas: boxCanvas, };
+              `
+            ).replace(
+              '#578A34',
+              settings.borders
+            ).replaceAll(
+              '#578A34',
+              settings.walls
+            ).replaceAll(
+              '#A2D149',
+              settings.lightSquares
+            ).replaceAll(
+              '#AAD751',
+              settings.darkSquares
+            ).replaceAll(
+              tkb, 
+              'boorg'
+            )
+          );
+
+      
+          
+      
+          eval(
+            code.match(
+              /[a-zA-Z0-9_$]{1,8}\.prototype\.[a-zA-Z0-9_$]{1,8}=function\(a,b,c,d,e\){this\.[a-zA-Z0-9_$]{1,8}&&\(this\.[a-zA-Z0-9_$]{1,8}\.translate[^}]*?y\)\)}/
+            )[0].replace(
+              '{',
+              `{
+                let canv = document.createElement('canvas');
+                canv.width = 403;canv.height = 110;
+      
+                let ctx = canv.getContext('2d');
+      
+                for(let i = 0; i < 12; i++) {
+                  if(i % 2 === 0)
+                    ctx.fillStyle = '${settings.darkSquares}';
+                  else
+                    ctx.fillStyle = '${settings.lightSquares}';
+                  
+                  ctx.fillRect(i * 34, 0, (i + 1) * 34, 34);
+                }
+      
+                for(let i = 0; i < 12; i++) {
+                  if(i % 2 === 0)
+                    ctx.fillStyle = '${settings.lightSquares}';
+                  else
+                    ctx.fillStyle = '${settings.darkSquares}';
+                  
+                  ctx.fillRect(i * 34, 34, (i + 1) * 34, 69);
+                }
+      
+                for(let i = 0; i < 12; i++) {
+                  if(i % 2 === 0)
+                    ctx.fillStyle = '${settings.darkSquares}';
+                  else
+                    ctx.fillStyle = '${settings.lightSquares}';
+                  
+                  ctx.fillRect(i * 34, 70, (i + 1) * 34, canv.height);
+                }
+                
+              `
+            ).replace(
+              'drawImage(',
+              `
+              drawImage(Object.values(this).reduce(
+                (s, el) => s || (typeof el === 'string' ? el.includes('end_empty') : false), false
+              ) ? canv : 
+              `
+            )
+          );
+        }, 250);
+        
+      }
+    }, 250);
   }, 250);
 };
 
@@ -349,8 +423,76 @@ window.snake.dark = function() {
     lightSquares: '#47404F',
     darkSquares:  '#423C49',
     buttons:      '#131323',
+    sky:          '#191970',
+    separators:   '#201559',
   });
 };
+window.snake.desert = function() {
+  return window.snake.scheme({
+    scoreBar:     '#B2A350',
+    background:   '#8C8340',
+    borders:      '#B2A350',
+    shadows:      '#A9993C',
+    lightSquares: '#E8D56A',
+    darkSquares:  '#C9B95C',
+  });
+};
+window.snake.pool = function() {
+  return window.snake.scheme({
+    scoreBar:     '#192544',
+    background:   '#214172',
+    borders:      '#152549',
+    shadows:      '#11529F',
+    lightSquares: '#359ECE',
+    darkSquares:  '#3172AF',
+  });
+};
+window.snake.colorful = function() {
+  return window.snake.scheme({
+    scoreBar:     '#5C3E84',
+    background:   '#4B4FA0',
+    borders:      '#686EE2',
+    shadows:      '#D75C4E',
+    lightSquares: '#FFA87B',
+    darkSquares:  '#F35C6E',
+  });
+};
+window.snake.light = function() {
+  return window.snake.scheme({
+    scoreBar:     '#555273',
+    background:   '#C0DDE8',
+    borders:      '#65799B',
+    shadows:      '#A6CCDE',
+    lightSquares: '#E2EFF1',
+    darkSquares:  '#B6D5E1',
+    buttons:      '#90B6D1', 
+  });
+};
+window.snake.pink = function() {
+  return window.snake.scheme({
+    scoreBar:     '#DB3C8A',
+    background:   '#821655',
+    borders:      '#A03271',
+    shadows:      '#B64C9E',
+    lightSquares: '#EB92FB',
+    darkSquares:  '#C855BC',
+    buttons:      '#CA50CE',
+  });
+};
+window.snake.end = function() {
+  return window.snake.scheme({
+    scoreBar:     '#BBBBBB',
+    background:   '#000000',
+    borders:      '#888888',
+    shadows:      '#DDDDDD',
+    lightSquares: '#FFFFFF',
+    darkSquares:  '#FFFFFF',
+    sky:          '#eaeaea',
+    separators:   '#aeaeae',
+    buttons:      '#bdbdbd',
+  });
+};
+
 
 
 
@@ -400,4 +542,13 @@ function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
     ctx.stroke();
   if(fill)
     ctx.fill();
+}
+
+function hex_to_rgb(hex) {
+  hex = hex.replace('#', '');
+  return {
+    r: parseInt(hex.substring(0, 2), 16),
+    g: parseInt(hex.substring(2, 4), 16),
+    b: parseInt(hex.substring(4, 6), 16),
+  };
 }
