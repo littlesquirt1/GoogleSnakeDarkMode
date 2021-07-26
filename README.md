@@ -4,7 +4,7 @@
 This project has JavaScript code that, when pasted directly into the developer console in the browser, changes colors in the Google Snake Game.<br/>
 This mod is supported on Chrome and Opera. Other browser may or may not work.
 
-## Making it work
+## Making It Work
 Simply click the bookmark.<br/>
 Alternatively, you can do the following:<br/>
 As mentioned earlier, copy and paste the code in `darkmode.js` into the console, here's a screenshot:     
@@ -21,7 +21,7 @@ window.snake.dark();
 ```
 If you want to disable, just refresh.
 
-## Give custom colors to board
+## Enable a Custom Scheme
 ```
 window.snake.scheme({
   scoreBar:      '#rrggbb', // hex code for score bar, defaults to the default color if omitted
