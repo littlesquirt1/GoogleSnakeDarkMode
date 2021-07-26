@@ -40,7 +40,7 @@ window.snake.scheme({
 ```
 If you want to disable, just refresh.
 
-# Contributors
+## Contributors
 * Llama
 * Fishes
 * Yarmiplay (Only this readme though and a bit of organizing <3)
