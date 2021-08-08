@@ -44,7 +44,7 @@ window.snake.scheme = function(settings = {}) {
   let _f = settings.darkGoal;
   _f = _f.replace('#', '');
   let { _h, _s, _v, } = RGBtoHSV(parseInt(_f.substring(0, 2), 16), parseInt(_f.substring(2, 4), 16), parseInt(_f.substring(4, 6), 16))
-  _v -= .12;
+  _v -= .06;
   _v = _v < 0 ? 0 : _v;
   let { _r, _g, _b, } = HSVtoRGB(_h, _s, _v);
   settings.darkerGoal = '#' + (~~_r).toString(16) + (~~_g).toString(16) + (~~_b).toString(16);
@@ -294,19 +294,19 @@ window.snake.scheme = function(settings = {}) {
             bctx.fillStyle = '${settings.lightGoal}';
             bctx.fillRect(512, 0, 128, 128);
 
-            bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillStyle = '${settings.darkerGoal}';
             bctx.fillRect(533, 21, 85, 85);
 
             bctx.fillStyle = '${settings.lightGoal}';
             bctx.fillRect(554, 42, 42, 42);
 
-            bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillStyle = '${settings.darkerGoal}';
             bctx.fillRect(640, 0, 128, 128);
 
             bctx.fillStyle = '${settings.lightGoal}';
             bctx.fillRect(661, 21, 85, 85);
 
-            bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillStyle = '${settings.darkerGoal}';
             bctx.fillRect(682, 42, 42, 42);
 
 
