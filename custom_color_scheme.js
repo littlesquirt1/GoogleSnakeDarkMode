@@ -41,7 +41,13 @@ window.snake.scheme = function(settings = {}) {
     let { r, g, b, } = HSVtoRGB(h, s, v);
     settings.darkGoal = '#' + (~~r).toString(16) + (~~g).toString(16) + (~~b).toString(16);
   }
-
+  let _f = settings.darkGoal;
+  _f = _f.replace('#', '');
+  let { _h, _s, _v, } = RGBtoHSV(parseInt(_f.substring(0, 2), 16), parseInt(_f.substring(2, 4), 16), parseInt(_f.substring(4, 6), 16))
+  _v -= .12;
+  _v = _v < 0 ? 0 : _v;
+  let { _r, _g, _b, } = HSVtoRGB(_h, _s, _v);
+  settings.darkerGoal = '#' + (~~_r).toString(16) + (~~_g).toString(16) + (~~_b).toString(16);
   
   document.body.bgColor = settings.background || settings.scoreBar;
   document.getElementsByClassName('sEOCsb')[0].style.backgroundColor = settings.scoreBar;
@@ -247,7 +253,7 @@ window.snake.scheme = function(settings = {}) {
       }
 
       function processCode(code) {
-        eval(`var boxImage = new Image; boxImage.src = 'https://i.postimg.cc/GppCGFKQ/box.png';`);
+        eval(`var boxImage = new Image; boxImage.src = 'https://i.postimg.cc/C1w3nYcZ/box.png';`);
         setTimeout(function() {
           
 
@@ -262,47 +268,47 @@ window.snake.scheme = function(settings = {}) {
           eval(
             `
             var boxCanvas = document.createElement('canvas');
-            boxCanvas.width = 896;boxCanvas.height = 128;
+            boxCanvas.width = 1024;boxCanvas.height = 128;
             var bctx = boxCanvas.getContext('2d');
 
             bctx.drawImage(boxImage, 0, 0);
       
             bctx.fillStyle = '${settings.lightGoal}';
-            bctx.fillRect(128, 0, 128, 128);
-
-            bctx.fillStyle = '${settings.darkGoal}';
-            bctx.fillRect(149, 21, 85, 85);
-
-            bctx.fillStyle = '${settings.lightGoal}';
-            bctx.fillRect(171, 43, 41, 41);
-
-            bctx.fillStyle = '${settings.darkGoal}';
             bctx.fillRect(256, 0, 128, 128);
 
-            bctx.fillStyle = '${settings.lightGoal}';
+            bctx.fillStyle = '${settings.darkGoal}';
             bctx.fillRect(277, 21, 85, 85);
 
-            bctx.fillStyle = '${settings.darkGoal}';
-            bctx.fillRect(299, 43, 41, 41);
-
             bctx.fillStyle = '${settings.lightGoal}';
+            bctx.fillRect(298, 42, 42, 42);
+
+            bctx.fillStyle = '${settings.darkGoal}';
             bctx.fillRect(384, 0, 128, 128);
 
-            bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillStyle = '${settings.lightGoal}';
             bctx.fillRect(405, 21, 85, 85);
 
-            bctx.fillStyle = '${settings.lightGoal}';
-            bctx.fillRect(427, 43, 41, 41);
-
             bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillRect(426, 42, 42, 42);
+
+            bctx.fillStyle = '${settings.lightGoal}';
             bctx.fillRect(512, 0, 128, 128);
 
-            bctx.fillStyle = '${settings.lightGoal}';
+            bctx.fillStyle = '${settings.darkGoal}';
             bctx.fillRect(533, 21, 85, 85);
 
-            bctx.fillStyle = '${settings.darkGoal}';
-            bctx.fillRect(555, 43, 41, 41);
+            bctx.fillStyle = '${settings.lightGoal}';
+            bctx.fillRect(554, 42, 42, 42);
 
+            bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillRect(640, 0, 128, 128);
+
+            bctx.fillStyle = '${settings.lightGoal}';
+            bctx.fillRect(661, 21, 85, 85);
+
+            bctx.fillStyle = '${settings.darkGoal}';
+            bctx.fillRect(682, 42, 42, 42);
+            document.body.appendChild(boxCanvas);
 
 
             `
@@ -411,7 +417,7 @@ window.snake.scheme = function(settings = {}) {
         
       }
     }, 250);
-  }, 250);
+  }, 500);
 };
 
 window.snake.dark = function() {
