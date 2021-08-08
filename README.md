@@ -7,7 +7,7 @@ This mod is supported on Chrome and Opera. Other browser may or may not work.
 ## Making It Work
 Simply click the bookmark.<br/>
 Alternatively, you can do the following:<br/>
-As mentioned earlier, copy and paste the code in `darkmode.js` into the console, here's a screenshot:     
+As mentioned earlier, copy and paste the code in `custom_color_scheme.js` into the console, here's a screenshot:     
 ![image](https://user-images.githubusercontent.com/6286286/111076598-95cc9a00-84f5-11eb-9a38-e71bddeb97e4.png)<br/>
 And press Enter.<br/>
 As of now, this must be done everytime you refresh/open the game.
