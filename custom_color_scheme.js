@@ -308,7 +308,6 @@ window.snake.scheme = function(settings = {}) {
 
             bctx.fillStyle = '${settings.darkGoal}';
             bctx.fillRect(682, 42, 42, 42);
-            document.body.appendChild(boxCanvas);
 
 
             `
