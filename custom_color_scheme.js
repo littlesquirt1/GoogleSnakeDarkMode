@@ -43,7 +43,7 @@ window.snake.scheme = function(settings = {}) {
   }
   let _f = settings.darkGoal;
   _f = _f.replace('#', '');
-  let { _h, _s, _v, } = RGBtoHSV(parseInt(_f.substring(0, 2), 16), parseInt(_f.substring(2, 4), 16), parseInt(_f.substring(4, 6), 16))
+  let { _h, _s, _v, } = RGBtoHSV(parseInt(_f.substring(0, 2), 16), parseInt(_f.substring(2, 4), 16), parseInt(_f.substring(4, 6), 16));
   _v -= .06;
   _v = _v < 0 ? 0 : _v;
   let { _r, _g, _b, } = HSVtoRGB(_h, _s, _v);
@@ -421,10 +421,10 @@ window.snake.scheme = function(settings = {}) {
 
 window.snake.dark = function() {
   return window.snake.scheme({
-    scoreBar:     '#262428',
-    walls: 	  '#101010',
-    borders: 	  '#2E2933',
-    shadows:	  '#302C35',
+		scoreBar: 		'#262428',
+		walls: 				'#101010',
+    borders: 			'#2E2933',
+    shadows:			'#302C35',
     lightSquares: '#47404F',
     darkSquares:  '#423C49',
     buttons:      '#131323',
