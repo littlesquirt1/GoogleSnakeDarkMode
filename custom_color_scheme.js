@@ -421,10 +421,10 @@ window.snake.scheme = function(settings = {}) {
 
 window.snake.dark = function() {
   return window.snake.scheme({
-		scoreBar: 		'#262428',
-		walls: 				'#101010',
-    borders: 			'#2E2933',
-    shadows:			'#302C35',
+    scoreBar: 	  '#262428',
+    walls: 	  '#101010',
+    borders: 	  '#2E2933',
+    shadows:   	  '#302C35',
     lightSquares: '#47404F',
     darkSquares:  '#423C49',
     buttons:      '#131323',
