@@ -41,13 +41,13 @@ window.snake.scheme = function(settings = {}) {
     let { r, g, b, } = HSVtoRGB(h, s, v);
     settings.darkGoal = '#' + (~~r).toString(16) + (~~g).toString(16) + (~~b).toString(16);
   }
-  let _f = settings.darkGoal;
-  _f = _f.replace('#', '');
-  let { _h, _s, _v, } = RGBtoHSV(parseInt(_f.substring(0, 2), 16), parseInt(_f.substring(2, 4), 16), parseInt(_f.substring(4, 6), 16));
-  _v -= .06;
-  _v = _v < 0 ? 0 : _v;
-  let { _r, _g, _b, } = HSVtoRGB(_h, _s, _v);
-  settings.darkerGoal = '#' + (~~_r).toString(16) + (~~_g).toString(16) + (~~_b).toString(16);
+  let f = settings.darkGoal;
+  f = f.replace('#', '');
+  let { h, s, v, } = RGBtoHSV(parseInt(f.substring(0, 2), 16), parseInt(f.substring(2, 4), 16), parseInt(f.substring(4, 6), 16));
+  v -= .11;
+  v = v < 0 ? 0 : v;
+  let { r, g, b, } = HSVtoRGB(h, s, v);
+  settings.darkerGoal = '#' + (~~r).toString(16) + (~~g).toString(16) + (~~b).toString(16);
   
   document.body.bgColor = settings.background || settings.scoreBar;
   document.getElementsByClassName('sEOCsb')[0].style.backgroundColor = settings.scoreBar;
@@ -253,6 +253,66 @@ window.snake.scheme = function(settings = {}) {
       }
 
       function processCode(code) {
+        
+        if(settings.burger || settings.cactus || settings.hotdog || settings.egg) {
+          let burg = new Image();
+          burg.src = 'https://i.postimg.cc/B6ycxmBb/porga.png';
+          burg.width = burg.height = 47;
+          burg.className = 'DqMRee SsAred';
+
+          let cact = new Image();
+          cact.src = 'https://i.postimg.cc/RCDVL7Bf/index.png';
+          cact.width = cact.height = 47;
+          cact.className = 'DqMRee SsAred';
+
+          let dog = new Image();
+          dog.src = 'https://i.postimg.cc/rsrbW0x6/dog.png';
+          dog.width = dog.height = 47;
+          dog.className = 'DqMRee SsAred';
+
+          let egg = new Image();
+          egg.src = 'https://i.postimg.cc/501jDL9g/eg.png';
+          egg.width = egg.height = 47;
+          egg.className = 'DqMRee SsAred';
+
+          if(document.querySelector('#apple').childElementCount > 13)
+            for(let i = document.querySelector('#apple').childElementCount - 1; i >= 14; i--)
+              document.querySelector('#apple').removeChild(document.querySelector('#apple').children[i]);
+
+          settings.burger && document.querySelector('#apple').appendChild(burg);
+          settings.cactus && document.querySelector('#apple').appendChild(cact);
+          settings.hotdog && document.querySelector('#apple').appendChild(dog);
+          settings.egg && document.querySelector('#apple').appendChild(egg);
+
+
+          eval(`var bu_ = new Image(); bu_.src = 'https://i.postimg.cc/B6ycxmBb/porga.png';`);
+          eval(`var ca_ = new Image(); ca_.src = 'https://i.postimg.cc/RCDVL7Bf/index.png';`);
+          eval(`var do_ = new Image(); do_.src = 'https://i.postimg.cc/rsrbW0x6/dog.png';`);
+          eval(`var eg_ = new Image(); eg_.src = 'https://i.postimg.cc/501jDL9g/eg.png';`);
+          eval(
+            code.match(
+              /[a-zA-Z0-9_$]{1,8}=function\(a\){return a\.[a-zA-Z0-9_$]{1,8}\.canvas}/
+            )[0].replace(
+              '{',
+              `{
+                if(a.path && a.path.includes('apple') && [...document.querySelector('#apple').children].indexOf(document.getElementsByClassName('DqMRee tuJOWd')[0]) > 13)
+                  return document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('porga') ? bu_ : document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('index') ? ca_ : document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('dog') ? do_ : eg_;
+                
+                
+              `
+            )
+          );
+
+          eval(
+            code.match(
+              /[a-zA-Z0-9_$]{1,8}\.prototype\.[a-zA-Z0-9_$]{1,8}=function\(\){[^}]*?apple[^]*?el\(\)\)}}/
+            )[0].replace(
+              'Math.floor(13*Math.random());',
+              `Math.floor((13 + ~~${settings.burger} + ~~${settings.cactus} + ~~${settings.hotdog} + ~~${settings.egg}) * Math.random());`
+            )
+          );
+        }
+
         eval(`var boxImage = new Image; boxImage.src = 'https://i.postimg.cc/C1w3nYcZ/box.png';`);
         setTimeout(function() {
           
@@ -421,15 +481,16 @@ window.snake.scheme = function(settings = {}) {
 
 window.snake.dark = function() {
   return window.snake.scheme({
-    scoreBar: 	  '#262428',
-    walls: 	  '#101010',
-    borders: 	  '#2E2933',
-    shadows:   	  '#302C35',
+		scoreBar: 		'#262428',
+		walls: 				'#101010',
+    borders: 			'#2E2933',
+    shadows:			'#302C35',
     lightSquares: '#47404F',
     darkSquares:  '#423C49',
     buttons:      '#131323',
     sky:          '#191970',
     separators:   '#201559',
+    burger:       true,
   });
 };
 window.snake.desert = function() {
@@ -437,9 +498,11 @@ window.snake.desert = function() {
     scoreBar:     '#B2A350',
     background:   '#8C8340',
     borders:      '#B2A350',
+    walls:        '#7F7339',
     shadows:      '#A9993C',
     lightSquares: '#E8D56A',
     darkSquares:  '#C9B95C',
+    cactus:       true,
   });
 };
 window.snake.pool = function() {
@@ -450,6 +513,7 @@ window.snake.pool = function() {
     shadows:      '#11529F',
     lightSquares: '#359ECE',
     darkSquares:  '#3172AF',
+    hotdog:       true,
   });
 };
 window.snake.colorful = function() {
@@ -495,6 +559,7 @@ window.snake.end = function() {
     sky:          '#eaeaea',
     separators:   '#aeaeae',
     buttons:      '#bdbdbd',
+    egg:          true,
   });
 };
 
