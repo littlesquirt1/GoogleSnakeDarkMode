@@ -48,6 +48,7 @@ window.snake.scheme = function(settings = {}) {
   v = v < 0 ? 0 : v;
   let { r, g, b, } = HSVtoRGB(h, s, v);
   settings.darkerGoal = '#' + (~~r).toString(16) + (~~g).toString(16) + (~~b).toString(16);
+
   
   document.body.bgColor = settings.background || settings.scoreBar;
   document.getElementsByClassName('sEOCsb')[0].style.backgroundColor = settings.scoreBar;
@@ -477,14 +478,15 @@ window.snake.scheme = function(settings = {}) {
       }
     }, 250);
   }, 500);
+  localStorage.fishes_scheme_lol = JSON.stringify(settings);
 };
 
 window.snake.dark = function() {
   return window.snake.scheme({
-    scoreBar:     '#262428',
-    walls: 	  '#101010',
-    borders: 	  '#2E2933',
-    shadows:	  '#302C35',
+		scoreBar: 		'#262428',
+		walls: 				'#101010',
+    borders: 			'#2E2933',
+    shadows:			'#302C35',
     lightSquares: '#47404F',
     darkSquares:  '#423C49',
     buttons:      '#131323',
