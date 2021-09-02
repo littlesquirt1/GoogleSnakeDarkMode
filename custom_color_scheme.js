@@ -322,10 +322,7 @@ window.snake.scheme = function(settings = {}) {
             /this\.[a-zA-Z0-9_$]{1,8}=new [a-zA-Z0-9_$]{1,8}\([^)}]*?box\.png[^})]*?\);/
           )[0].replace('this.', '').replace(/=new[^]*/g, '');
 
-          const containee = code.match(
-            /[a-zA-Z0-9_$]{1,8}=function\(a,b,c\){this\.[a-zA-Z0-9_$]{1,8}=new Image;[^}]*?this\)}/
-          )[0].match(/this\.[a-zA-Z0-9_$]{1,8}=document/)[0].replace('this.', '').replace('=document', '');
-
+          
           eval(
             `
             var boxCanvas = document.createElement('canvas');
@@ -402,7 +399,7 @@ window.snake.scheme = function(settings = {}) {
             )[0].replace(
               '{',
               `{
-                this\.${box}\.${containee} = { canvas: boxCanvas, };
+                this\.${box}\.${oa} = { canvas: boxCanvas, };
               `
             ).replace(
               '#578A34',
@@ -483,10 +480,10 @@ window.snake.scheme = function(settings = {}) {
 
 window.snake.dark = function() {
   return window.snake.scheme({
-		scoreBar: 		'#262428',
-		walls: 				'#101010',
-    borders: 			'#2E2933',
-    shadows:			'#302C35',
+    scoreBar:     '#262428',
+    walls:        '#101010',
+    borders:      '#2E2933',
+    shadows:      '#302C35',
     lightSquares: '#47404F',
     darkSquares:  '#423C49',
     buttons:      '#131323',
