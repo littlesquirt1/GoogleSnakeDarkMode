@@ -255,7 +255,7 @@ window.snake.scheme = function(settings = {}) {
 
       function processCode(code) {
         
-        if(settings.burger || settings.cactus || settings.hotdog || settings.egg) {
+        if(settings.burger || settings.cactus || settings.hotdog || settings.egg || settings.lime || settings.red_pepper) {
           let burg = new Image();
           burg.src = 'https://i.postimg.cc/B6ycxmBb/porga.png';
           burg.width = burg.height = 47;
