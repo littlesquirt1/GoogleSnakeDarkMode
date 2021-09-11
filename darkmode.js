@@ -391,7 +391,6 @@ window.snake.scheme = function(settings = {}) {
             bctx.fillStyle = '${settings.darkerGoal}';
             bctx.fillRect(682, 42, 42, 42);
 
-
             `
           );
 
