@@ -432,10 +432,10 @@ window.snake.scheme = function(settings = {}) {
               '#578A34',
               settings.walls
             ).replaceAll(
-              '#AAD751',
+              '#A2D149',
               settings.lightSquares
             ).replaceAll(
-              '#A2D149',
+              '#AAD751',
               settings.darkSquares
             ).replaceAll(
               tkb, 
