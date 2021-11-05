@@ -280,8 +280,8 @@ window.snake.scheme = function(settings = {}) {
         const br_data = br_ctx.getImageData(0, 0, 47, 47);
         const br_pix = br_data.data;
 
-        settings.custom_gradient = settings.custom_gradient || [ '#000000', '#000000', ];
-        settings.custom_yinyang  = settings.custom_yinyang  || [ '#000000', '#000000', ];
+        settings.custom_gradient = settings.custom_gradient || [ '#0095ff', '#ff004d', ];
+        settings.custom_yinyang  = settings.custom_yinyang  || [ '#ff5a00', '#00ffb3', ];
 
         let snek1 = hex_to_rgb(settings.custom_gradient[0]);
         let snek2 = hex_to_rgb(settings.custom_gradient[1]);
