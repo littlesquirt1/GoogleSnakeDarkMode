@@ -1,6 +1,6 @@
 window.snake.scheme = function(settings = {}) {
   if(settings.score_bar === undefined)
-    settings.score_bar = '#4A752C';
+    settings.score_bar = settings.scoreBar || '#4A752C';
   if(settings.borders === undefined)
     settings.borders = '#578A34';
   if(settings.walls === undefined)
@@ -62,7 +62,7 @@ window.snake.scheme = function(settings = {}) {
   settings.darker_goal = '#' + (~~r).toString(16) + (~~g).toString(16) + (~~b).toString(16);
 
   
-  document.body.bgColor = settings.background || settings.score_bar || settings.scoreBar;
+  document.body.bgColor = settings.background || settings.score_bar;
   document.getElementsByClassName('sEOCsb')[0].style.backgroundColor = settings.score_bar;
   let bacon = document.getElementsByClassName('T7SB3d');
   for(let b of bacon)
