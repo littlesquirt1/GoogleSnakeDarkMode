@@ -271,101 +271,109 @@ window.snake.scheme = function(settings = {}) {
         br.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAADY0lEQVR4nO2ZMU8VQRRG9///AFsrOytjZSKNDbEiGhMrKUls1ERCMMBagBv37dtl9+3c+e69c04yFZDsnO8AD17XAQAAAAAAAAAAAABUoZ85kJy54YkhOVuGJ4Rk7BmfAIIzGfTs4ra/vnnoj3F5dUcEyRgNOTf8IYdf162LgGCcMRrw8upu1fgbIuBXiXNGAxzy6cu3vu+60Xn1+v3w8e8/7ve+diACIYvj//z1ezL+v/P23fnweWcXtxYREEIFFgOYG384T1zfPBBAUIoEsPBaoHYERLWRCAGsGY2fMCeyGMCH88/ZA2g+hOWfAH3/+Ir/mfENXwOsGalmaOkYCZj7H8D/fwq+ePlm8nHDvwJqB0AEW6n03T83jCK4dEwu73B8RQBEsMTCG0KZAmgmgqOX//j1z+SNIcHw6gCaCEE1aqQA0kagHjZSAOkiUI8aMYA0EagHLSXc4zO5Rz1oadlen8st6kEtJHt+NleoB7UUHOEZpagHrSE20rNWRT1obaERn9kU9agqkVGfuyjqUT2Iy3SXTagH9iQr670WUQ/tUVD2+w2ox3YrpmvkrurR3Qk5IPV91aO7EfEMae/O+OtJd3/G304qD4x/GilcMP4+wjshgP2EdsL4+wnrhfHLEdIP45clnCMCKEs4R4xfnjCe+O63IYwrxrchjC8CsCOELwKwI4QvxrcjhDMCsMW9MwKwxbUzxrfHtTsCsMe1OwKwx7U7ArDHtTsCsMe1OwKwx7U7ArDHtTsCsMe1OwKwx707ArAjhDcCsCOENwKwI4S3WgG0GEEIZwRgQxhnBGBDGGcEYEMYZzUDaCWCcL4IoCzhXBFAOUK6qhlA9ghCeiKAMoT2RAT7Ce2ndgDZIgjvhgBOJ40bIjiNNE4UAUSPIJ0PIlhPSg+qAFxcfgOpHRDBMunvrgzAlYgjNHNvIpjS1H3VAXiS0tJdR6gD8CAn+/0WUQ+vFJX1XptRj15bWKa7FEM9uLXAyM9eDfXQJaWqnzHc+F2nF5bthEQtLcsJjVpe9JMCtcSoJxVqmdFOStRSo5zUqOV6P02gluz1NIVatrfTLGrxHk7zqAdgeAeox2B8J6iHYXwHqAdieCeoB2N4J6gHZHwnqMdkdCeoB2Z4RzA6DDA6HIWhAQAAAAAAALruL5cwHSTkvUUiAAAAAElFTkSuQmCC';
         br.crossOrigin = 'Anonymous';
 
-        const br_ = document.createElement('canvas');
-        br_.width = br_.height = 47;
-        const br_ctx = br_.getContext('2d');
-
-        br_ctx.drawImage(br, 0, 0, 47, 47);
-
-        const br_data = br_ctx.getImageData(0, 0, 47, 47);
-        const br_pix = br_data.data;
-
-        settings.custom_gradient = settings.custom_gradient || [ '#0095ff', '#ff004d', ];
-        settings.custom_yinyang  = settings.custom_yinyang  || [ '#ff5a00', '#00ffb3', ];
-
-        let snek1 = hex_to_rgb(settings.custom_gradient[0]);
-        let snek2 = hex_to_rgb(settings.custom_gradient[1]);
-        let snek_eye = rgb_to_hsv(snek1);
-        snek_eye.s = Math.min(snek_eye.s + .13, 1);
-        snek_eye.v = Math.max(snek_eye.v - .62, 0);
-        snek_eye = hsv_to_rgb(snek_eye);
-
-
-        for(let y = 0; y < 47; y++) {
-          for(let x = 0; x < 47; x++) {
-            let i = 4 * (x + y * 47);
-            const c = {
-              r: br_pix[0 + i],
-              g: br_pix[1 + i],
-              b: br_pix[2 + i],
-            };
-
-            if(x < 27 && close(c, { r: 0, g: 0, b: 0, }, 8)) {
-              br_pix[0 + i] = snek1.r;
-              br_pix[1 + i] = snek1.g;
-              br_pix[2 + i] = snek1.b;
-            } else if(close(c, { r: 0, g: 0, b: 0, }, 8)) {
-              br_pix[0 + i] = snek2.r;
-              br_pix[1 + i] = snek2.g;
-              br_pix[2 + i] = snek2.b;
-            } else if(close(c, { r: 255, g: 0, b: 0, }, 10, 100, 100)) {
-              br_pix[0 + i] = snek_eye.r;
-              br_pix[1 + i] = snek_eye.g;
-              br_pix[2 + i] = snek_eye.b;
-            }
-          }
-        }
-
-
-        br_ctx.putImageData(br_data, 0, 0);
-
-        console.log(br_.toDataURL());
+        
 
         const br2_ = document.createElement('canvas');
         br2_.width = br2_.height = 47;
         const br2_ctx = br2_.getContext('2d');
 
-        br2_ctx.drawImage(br, 0, 0, 47, 47);
-
-        const br2_data = br2_ctx.getImageData(0, 0, 47, 47);
-        const br2_pix = br2_data.data;
-
-        let snek21 = hex_to_rgb(settings.custom_yinyang[0]);
-        let snek22 = hex_to_rgb(settings.custom_yinyang[1]);
-        let snek2_eye = rgb_to_hsv(snek21);
-        snek2_eye.s = Math.min(snek2_eye.s + .13, 1);
-        snek2_eye.v = Math.max(snek2_eye.v - .62, 0);
-        snek2_eye = hsv_to_rgb(snek2_eye);
         
 
-        for(let y = 0; y < 47; y++) {
-          for(let x = 0; x < 47; x++) {
-            let i = 4 * (x + y * 47);
-            const c = {
-              r: br2_pix[0 + i],
-              g: br2_pix[1 + i],
-              b: br2_pix[2 + i],
-            };
+        setTimeout(function() {
 
-            if(x < 27 && close(c, { r: 0, g: 0, b: 0, }, 8)) {
-              br2_pix[0 + i] = snek21.r;
-              br2_pix[1 + i] = snek21.g;
-              br2_pix[2 + i] = snek21.b;
-            } else if(close(c, { r: 0, g: 0, b: 0, }, 8)) {
-              br2_pix[0 + i] = snek22.r;
-              br2_pix[1 + i] = snek22.g;
-              br2_pix[2 + i] = snek22.b;
-            } else if(close(c, { r: 255, g: 0, b: 0, }, 10, 100, 100)) {
-              br2_pix[0 + i] = snek2_eye.r;
-              br2_pix[1 + i] = snek2_eye.g;
-              br2_pix[2 + i] = snek2_eye.b;
+          const br_ = document.createElement('canvas');
+          br_.width = br_.height = 47;
+          const br_ctx = br_.getContext('2d');
+
+          br_ctx.drawImage(br, 0, 0, 47, 47);
+
+          const br_data = br_ctx.getImageData(0, 0, 47, 47);
+          const br_pix = br_data.data;
+
+          settings.custom_gradient = settings.custom_gradient || [ '#0095ff', '#ff004d', ];
+          settings.custom_yinyang  = settings.custom_yinyang  || [ '#ff5a00', '#00ffb3', ];
+
+          let snek1 = hex_to_rgb(settings.custom_gradient[0]);
+          let snek2 = hex_to_rgb(settings.custom_gradient[1]);
+          let snek_eye = rgb_to_hsv(snek1);
+          snek_eye.s = Math.min(snek_eye.s + .13, 1);
+          snek_eye.v = Math.max(snek_eye.v - .62, 0);
+          snek_eye = hsv_to_rgb(snek_eye);
+
+
+          for(let y = 0; y < 47; y++) {
+            for(let x = 0; x < 47; x++) {
+              let i = 4 * (x + y * 47);
+              const c = {
+                r: br_pix[0 + i],
+                g: br_pix[1 + i],
+                b: br_pix[2 + i],
+              };
+
+              if(x < 27 && close(c, { r: 0, g: 0, b: 0, }, 8)) {
+                br_pix[0 + i] = snek1.r;
+                br_pix[1 + i] = snek1.g;
+                br_pix[2 + i] = snek1.b;
+              } else if(close(c, { r: 0, g: 0, b: 0, }, 8)) {
+                br_pix[0 + i] = snek2.r;
+                br_pix[1 + i] = snek2.g;
+                br_pix[2 + i] = snek2.b;
+              } else if(close(c, { r: 255, g: 0, b: 0, }, 10, 100, 100)) {
+                br_pix[0 + i] = snek_eye.r;
+                br_pix[1 + i] = snek_eye.g;
+                br_pix[2 + i] = snek_eye.b;
+              }
             }
           }
-        }
 
-        br2_ctx.putImageData(br2_data, 0, 0);
 
-        setTimeout(function() {
+          br_ctx.putImageData(br_data, 0, 0);
+
+          console.log(br_.toDataURL());
+
+          br2_ctx.drawImage(br, 0, 0, 47, 47);
+
+          const br2_data = br2_ctx.getImageData(0, 0, 47, 47);
+          const br2_pix = br2_data.data;
+
+          let snek21 = hex_to_rgb(settings.custom_yinyang[0]);
+          let snek22 = hex_to_rgb(settings.custom_yinyang[1]);
+          let snek2_eye = rgb_to_hsv(snek21);
+          snek2_eye.s = Math.min(snek2_eye.s + .13, 1);
+          snek2_eye.v = Math.max(snek2_eye.v - .62, 0);
+          snek2_eye = hsv_to_rgb(snek2_eye);
+          
+
+          for(let y = 0; y < 47; y++) {
+            for(let x = 0; x < 47; x++) {
+              let i = 4 * (x + y * 47);
+              const c = {
+                r: br2_pix[0 + i],
+                g: br2_pix[1 + i],
+                b: br2_pix[2 + i],
+              };
+
+              if(x < 27 && close(c, { r: 0, g: 0, b: 0, }, 8)) {
+                br2_pix[0 + i] = snek21.r;
+                br2_pix[1 + i] = snek21.g;
+                br2_pix[2 + i] = snek21.b;
+              } else if(close(c, { r: 0, g: 0, b: 0, }, 8)) {
+                br2_pix[0 + i] = snek22.r;
+                br2_pix[1 + i] = snek22.g;
+                br2_pix[2 + i] = snek22.b;
+              } else if(close(c, { r: 255, g: 0, b: 0, }, 10, 100, 100)) {
+                br2_pix[0 + i] = snek2_eye.r;
+                br2_pix[1 + i] = snek2_eye.g;
+                br2_pix[2 + i] = snek2_eye.b;
+              }
+            }
+          }
+
+          br2_ctx.putImageData(br2_data, 0, 0);
+
+
+
+
           if(document.querySelector('#color').childElementCount > 18)
             for(let i = document.querySelector('#color').childElementCount - 1; i >= 19; i--)
               document.querySelector('#color').removeChild(document.querySelector('#color').children[i]);
