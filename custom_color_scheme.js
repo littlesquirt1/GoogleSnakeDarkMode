@@ -8,9 +8,9 @@ window.snake.scheme = function(settings = {}) {
   if(settings.shadows === undefined)
     settings.shadows = '#94BD46';
   if(settings.light_squares === undefined)
-    settings.light_squares = '#AAD751';
+    settings.light_squares = settings.lightSquares || '#AAD751';
   if(settings.dark_squares === undefined)
-    settings.dark_squares = '#A2D149';
+    settings.dark_squares = settings.darkSquares || '#A2D149';
   if(settings.sky === undefined)
     settings.sky = '#4DC1F9';
   if(settings.separators === undefined)
@@ -62,7 +62,7 @@ window.snake.scheme = function(settings = {}) {
   settings.darker_goal = '#' + (~~r).toString(16) + (~~g).toString(16) + (~~b).toString(16);
 
   
-  document.body.bgColor = settings.background || settings.score_bar;
+  document.body.bgColor = settings.background || settings.score_bar || settings.scoreBar;
   document.getElementsByClassName('sEOCsb')[0].style.backgroundColor = settings.score_bar;
   let bacon = document.getElementsByClassName('T7SB3d');
   for(let b of bacon)
