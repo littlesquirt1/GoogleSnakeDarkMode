@@ -447,55 +447,55 @@ window.snake.scheme = function(settings = {}) {
             settings.lime       && document.querySelector('#apple').appendChild(lime);
             settings.red_pepper && document.querySelector('#apple').appendChild(pepper);
 
-            const HZ = code.match(
-              /g\.type<this\.[a-zA-Z0-9_$]{1,8}\.length\?g\.type:0/
-            )[0].match(/this\.[a-zA-Z0-9_$]{1,8}/)[0];
-            eval(
-              code.match(
-                /[a-zA-Z0-9_$]{1,8}\.prototype\.[a-zA-Z0-9_$]{1,8}=function\(\){if\(!this\.[a-zA-Z0-9_$]{1,8}&&[^]*?return this\.reset\(\)}/
-              )[0].replace(
-                '{',
-                `{
-                  if(${HZ}.length < 22) {
-                    ${HZ}.push({oa:{canvas:new Image}});
-                    for(let j = 22; j < document.querySelector('#apple').children.length; j++) {
-                      ${HZ}.push({oa:{canvas:document.querySelector('#apple').children[j]}});
-                    }
-                  }
-                `
-              )
-            );
-
-
-            // eval(`var bu_ = new Image(); bu_.src = 'https://i.postimg.cc/B6ycxmBb/porga.png';`);
-            // eval(`var ca_ = new Image(); ca_.src = 'https://i.postimg.cc/RCDVL7Bf/index.png';`);
-            // eval(`var do_ = new Image(); do_.src = 'https://i.postimg.cc/rsrbW0x6/dog.png';`);
-            // eval(`var eg_ = new Image(); eg_.src = 'https://i.postimg.cc/501jDL9g/eg.png';`);
-            // eval(`var li_ = new Image(); li_.src = 'https://i.postimg.cc/k5kWcyFB/lime.png';`);
-            // eval(`var pe_ = new Image(); pe_.src = 'https://i.postimg.cc/BQqHMbDc/redpepper.png';`);
+            // const HZ = code.match(
+            //   /g\.type<this\.[a-zA-Z0-9_$]{1,8}\.length\?g\.type:0/
+            // )[0].match(/this\.[a-zA-Z0-9_$]{1,8}/)[0];
             // eval(
             //   code.match(
-            //     /[a-zA-Z0-9_$]{1,8}=function\(a\){return a\.[a-zA-Z0-9_$]{1,8}\.canvas}/
+            //     /[a-zA-Z0-9_$]{1,8}\.prototype\.[a-zA-Z0-9_$]{1,8}=function\(\){if\(!this\.[a-zA-Z0-9_$]{1,8}&&[^]*?return this\.reset\(\)}/
             //   )[0].replace(
             //     '{',
             //     `{
-            //       if(a.path && a.path.includes('apple') && [...document.querySelector('#apple').children].indexOf(document.getElementsByClassName('DqMRee tuJOWd')[0]) > 21)
-            //         return document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('porga') 
-            //           ? bu_ 
-            //         : document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('index') 
-            //           ? ca_ 
-            //         : document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('dog')
-            //           ? do_ 
-            //         : document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('lime')
-            //           ? li_
-            //         : document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('pepper')
-            //           ? pe_
-            //         : eg_;
-                  
-                  
+            //       if(${HZ}.length < 22) {
+            //         ${HZ}.push({oa:{canvas:new Image}});
+            //         for(let j = 22; j < document.querySelector('#apple').children.length; j++) {
+            //           ${HZ}.push({oa:{canvas:document.querySelector('#apple').children[j]}});
+            //         }
+            //       }
             //     `
             //   )
             // );
+
+
+            eval(`var bu_ = new Image(); bu_.src = 'https://i.postimg.cc/B6ycxmBb/porga.png';`);
+            eval(`var ca_ = new Image(); ca_.src = 'https://i.postimg.cc/RCDVL7Bf/index.png';`);
+            eval(`var do_ = new Image(); do_.src = 'https://i.postimg.cc/rsrbW0x6/dog.png';`);
+            eval(`var eg_ = new Image(); eg_.src = 'https://i.postimg.cc/501jDL9g/eg.png';`);
+            eval(`var li_ = new Image(); li_.src = 'https://i.postimg.cc/k5kWcyFB/lime.png';`);
+            eval(`var pe_ = new Image(); pe_.src = 'https://i.postimg.cc/BQqHMbDc/redpepper.png';`);
+            eval(
+              code.match(
+                /[a-zA-Z0-9_$]{1,8}=function\(a\){return a\.[a-zA-Z0-9_$]{1,8}\.canvas}/
+              )[0].replace(
+                '{',
+                `{
+                  if(a.path && a.path.includes('apple') && [...document.querySelector('#apple').children].indexOf(document.getElementsByClassName('DqMRee tuJOWd')[0]) > 21)
+                    return document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('porga') 
+                      ? bu_ 
+                    : document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('index') 
+                      ? ca_ 
+                    : document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('dog')
+                      ? do_ 
+                    : document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('lime')
+                      ? li_
+                    : document.querySelector('#apple').getElementsByClassName('DqMRee tuJOWd')[0].src.includes('pepper')
+                      ? pe_
+                    : eg_;
+                  
+                  
+                `
+              )
+            );
 
 
 
