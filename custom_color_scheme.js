@@ -456,10 +456,12 @@ window.snake.scheme = function(settings = {}) {
               )[0].replace(
                 '{',
                 `{
-                  ${HZ}.push({oa:{canvas:new Image}});
-                  for(let j = 22; j < document.querySelector('#apple').children.length; j++) {
-                    ${HZ}.push({oa:{canvas:document.querySelector('#apple').children[j]}});
-                  }  
+                  if(${HZ}.length < 22) {
+                    ${HZ}.push({oa:{canvas:new Image}});
+                    for(let j = 22; j < document.querySelector('#apple').children.length; j++) {
+                      ${HZ}.push({oa:{canvas:document.querySelector('#apple').children[j]}});
+                    }
+                  }
                 `
               )
             );
