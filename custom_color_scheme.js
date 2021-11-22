@@ -256,6 +256,8 @@ window.snake.scheme = function(settings = {}) {
 
       const scripts = document.body.getElementsByTagName('script');
       for(let script of scripts) {
+        if(script.src === '' || script.src.includes('apis.google.com'))continue;
+        console.log(script.src);
         const req = new XMLHttpRequest();
         req.open('GET', script.src);
         req.onload = function() {
