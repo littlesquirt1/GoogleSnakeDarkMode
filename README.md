@@ -7,7 +7,7 @@ This mod is supported on Chrome and Opera. Other browser may or may not work.
 ## Making It Work
 Simply click the bookmark.<br/>
 To import the bookmark, follow this gif:
-![image](https://discord.com/channels/723093146954760222/823215962936967169/906281688940834877)<br/><br/>
+![image](https://cdn.discordapp.com/attachments/823215962936967169/906281687346995280/Release_Custom_Menu_Stuff_2.0_DarkSnakeGang_GoogleSnakeCustomMenuStuff_GitHub_-_Google_Chrome_2021-0-2.mp4)<br/><br/>
 Alternatively, you can do the following:<br/>
 As mentioned earlier, copy and paste the code in `custom_color_scheme.js` into the console, here's a screenshot:     
 ![image](https://user-images.githubusercontent.com/6286286/111076598-95cc9a00-84f5-11eb-9a38-e71bddeb97e4.png)<br/>
