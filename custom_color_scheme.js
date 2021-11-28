@@ -30,8 +30,9 @@ window.snake.scheme = function(settings = {}) {
     s = s > 1 ? 1 : s;
     v = v > 1 ? 1 : v;
 
-    let { r, g, b, } = hsv_to_rgb({ h: h, s: s, v: v, });
-    settings.light_goal = '#' + (~~r).toString(16) + (~~g).toString(16) + (~~b).toString(16);
+    let { r, g, b } = hsv_to_rgb({ h: h, s: s, v: v });
+    // settings.light_goal = '#' + (~~r).toString(16) + (~~g).toString(16) + (~~b).toString(16);
+    settings.light_goal = rgb_to_hex({ r: Math.round(r), g: Math.round(g), b: Math.round(b) });
   }
   if(settings.dark_goal === undefined) {
     let f = settings.dark_squares;
@@ -46,8 +47,9 @@ window.snake.scheme = function(settings = {}) {
     s = s > 1 ? 1 : s;
     v = v > 1 ? 1 : v < 0 ? 0 : v;
 
-    let { r, g, b, } = hsv_to_rgb({ h: h, s: s, v: v, });
-    settings.dark_goal = '#' + (~~r).toString(16) + (~~g).toString(16) + (~~b).toString(16);
+    let { r, g, b } = hsv_to_rgb({ h: h, s: s, v: v });
+    // settings.dark_goal = '#' + (~~r).toString(16) + (~~g).toString(16) + (~~b).toString(16);
+    settings.dark_goal = rgb_to_hex({ r: Math.round(r), g: Math.round(g), b: Math.round(b) });
   }
   let f = settings.dark_goal;
   f = f.replace('#', '');
@@ -58,8 +60,12 @@ window.snake.scheme = function(settings = {}) {
   });
   v -= .11;
   v = v < 0 ? 0 : v;
-  let { r, g, b, } = hsv_to_rgb({ h: h, s: s, v: v, });
-  settings.darker_goal = '#' + (~~r).toString(16) + (~~g).toString(16) + (~~b).toString(16);
+  let { r, g, b } = hsv_to_rgb({ h: h, s: s, v: v });
+  // settings.darker_goal = '#' + (~~r).toString(16) + (~~g).toString(16) + (~~b).toString(16);
+  settings.darker_goal = rgb_to_hex({ r: Math.round(r), g: Math.round(g), b: Math.round(b) });
+
+console.log(settings.dark_goal, settings.light_goal, settings.darker_goal)
+
 
   
   document.body.bgColor = settings.background || settings.score_bar;
@@ -845,6 +851,10 @@ function hex_to_rgb(hex) {
     g: parseInt(hex.substring(2, 4), 16),
     b: parseInt(hex.substring(4, 6), 16),
   };
+}
+
+function rgb_to_hex(col) {
+  return `#${col.r.toString(16).padStart(2, '0')}${col.g.toString(16).padStart(2, '0')}${col.b.toString(16).padStart(2, '0')}`
 }
 
 function close(c0, c1, rr = 1, rg = rr, rb = rr) {
