@@ -151,7 +151,7 @@ if(window.snake) {
 
 
     const wall_img = new Image();
-    wall_img.src = 'https://i.postimg.cc/XN8CGSPy/trophy-01.png';
+    wall_img.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/trophy-01.png';
     wall_img.crossOrigin = 'Anonymous';
     setTimeout(function() {
       const wall_mode = document.createElement('canvas');
@@ -207,7 +207,7 @@ if(window.snake) {
 
 
       let key_img = new Image();
-      key_img.src = 'https://i.postimg.cc/nzkFstB8/key-types-dark.png';
+      key_img.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/key-types-dark.png';
       key_img.crossOrigin = 'Anonymous';
       setTimeout(_ => {
         const key_types = document.createElement('canvas');
@@ -417,32 +417,32 @@ if(window.snake) {
             
             if(settings.burger || settings.cactus || settings.hotdog || settings.egg || settings.lime || settings.red_pepper || settings.cane) {
               let burg = new Image();
-              burg.src = 'https://i.postimg.cc/B6ycxmBb/porga.png';
+              burg.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/porga.png';
               burg.width = burg.height = 47;
               burg.className = 'DqMRee SsAred';
 
               let cact = new Image();
-              cact.src = 'https://i.postimg.cc/RCDVL7Bf/index.png';
+              cact.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/index.png';
               cact.width = cact.height = 47;
               cact.className = 'DqMRee SsAred';
 
               let dog = new Image();
-              dog.src = 'https://i.postimg.cc/rsrbW0x6/dog.png';
+              dog.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/dog.png';
               dog.width = dog.height = 47;
               dog.className = 'DqMRee SsAred';
 
               let egg = new Image();
-              egg.src = 'https://i.postimg.cc/501jDL9g/eg.png';
+              egg.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/eg.png';
               egg.width = egg.height = 47;
               egg.className = 'DqMRee SsAred';
 
               let lime = new Image();
-              lime.src = 'https://i.postimg.cc/k5kWcyFB/lime.png';
+              lime.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/lime.png';
               lime.width = lime.height = 47;
               lime.className = 'DqMRee SsAred';
 
               let pepper = new Image();
-              pepper.src = 'https://i.postimg.cc/BQqHMbDc/redpepper.png';
+              pepper.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/redpepper.png';
               pepper.width = pepper.height = 47;
               pepper.className = 'DqMRee SsAred';
 
@@ -498,12 +498,12 @@ if(window.snake) {
               );
 
 
-              // eval(`var bu_ = new Image(); bu_.src = 'https://i.postimg.cc/B6ycxmBb/porga.png';`);
-              // eval(`var ca_ = new Image(); ca_.src = 'https://i.postimg.cc/RCDVL7Bf/index.png';`);
-              // eval(`var do_ = new Image(); do_.src = 'https://i.postimg.cc/rsrbW0x6/dog.png';`);
-              // eval(`var eg_ = new Image(); eg_.src = 'https://i.postimg.cc/501jDL9g/eg.png';`);
-              // eval(`var li_ = new Image(); li_.src = 'https://i.postimg.cc/k5kWcyFB/lime.png';`);
-              // eval(`var pe_ = new Image(); pe_.src = 'https://i.postimg.cc/BQqHMbDc/redpepper.png';`);
+              // eval(`var bu_ = new Image(); bu_.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/porga.png';`);
+              // eval(`var ca_ = new Image(); ca_.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/index.png';`);
+              // eval(`var do_ = new Image(); do_.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/dog.png';`);
+              // eval(`var eg_ = new Image(); eg_.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/eg.png';`);
+              // eval(`var li_ = new Image(); li_.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/lime.png';`);
+              // eval(`var pe_ = new Image(); pe_.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/redpepper.png';`);
               // eval(
               //   code.match(
               //     /[a-zA-Z0-9_$]{1,8}=function\(a\){return a\.[a-zA-Z0-9_$]{1,8}\.canvas}/
@@ -540,7 +540,7 @@ if(window.snake) {
               );
             }
 
-            eval(`var boxImage = new Image; boxImage.src = 'https://i.postimg.cc/C1w3nYcZ/box.png';`);
+            eval(`var boxImage = new Image; boxImage.src = 'https://raw.githubusercontent.com/littlesquirt1/GoogleSnakeDarkMode/main/img/box.png';`);
             setTimeout(function() {
               
 
